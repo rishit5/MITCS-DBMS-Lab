@@ -1,0 +1,16 @@
+lab evaluation for week 1 to 5
+
+question1:
+
+select ID, Name 
+from student 
+where ID not in (Select ID from takes where year < 2009); 
+
+question2:
+
+select dept_name, sum(tot_cred) as total_creds
+from student 
+group by dept_name
+having sum(tot_cred) > (select sum(tot_cred) 
+		        from student 
+		        where dept_name = 'Finance');

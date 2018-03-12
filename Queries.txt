@@ -1,0 +1,44 @@
+1.Select name, dept_name
+from student; 
+2. Select * 
+from instructor 
+where dept_name like 'Comp. Sci.';
+3. Select  title
+from course
+where dept_name like 'Comp. Sci.' and CREDITS = 3;
+4. Select course_id, title
+from takes natural join course
+where takes.ID = 12345;
+5. Select *
+from instructor
+where salary > 40000 and salary <90000;
+6. Update advisor
+set I_ID = 10101
+where S_ID>100 and S_ID<200;
+7. Update Instructor
+set dept_name = 'Comp. Sci.'
+where dept_name like 'Biology';
+8. Update Instructor 
+set salary = salary*1.05;
+9.Delete 
+from department 
+where dept_name like 'Finance';
+10.Delete
+from prereq
+where course_id like '%101';
+11.Delete from course 
+where course_id not in (select course_id from teaches);
+12. Alter table student 
+add(DOB date);
+13. Alter table Department
+modify (dept_name varchar(20));
+14.Alter table student
+drop column DOB;
+15. Select ID 
+from instructor 
+where ID not in (select distinct ID from teaches);
+16. select name, 
+19. Select name 
+from instructor 
+where dept_name like '%ch%';
+20. Selec

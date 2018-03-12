@@ -1,0 +1,16 @@
+set serveroutput on
+declare
+	deptname
+	cursor c1 is 
+		select * from item_transaction;	
+begin
+	for item in c1
+	loop
+		update item_master set bal_stock = bal_stock-item.quantity where 
+			item.item_id = item_master.item_id;
+		if  sql%notfound then
+			insert into item_master values(item.item_id, item.description, item.quantity);
+		end if; 
+	end loop;
+end;
+/

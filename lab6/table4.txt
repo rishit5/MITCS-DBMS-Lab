@@ -1,0 +1,1 @@
+create table salary_raise(istructor_id varchar2(5), raise_date date, raise_amount numeric(10,2)); 

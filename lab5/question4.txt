@@ -1,0 +1,24 @@
+set serveroutput on
+declare
+	n number;
+	sum1 number := 0;
+	rem number := 0;
+	j number;
+	qu number;
+begin
+	n := &n;
+	j := n;
+	while n != 0
+	loop
+		rem := mod(n,10);
+		sum1:= (sum1*10) + rem;
+		n := floor(n/10);
+	end loop;
+	dbms_output.put_line(to_char(sum1));
+	if j = sum1 then
+		dbms_output.put_line('Palindrome');
+	else 
+		dbms_output.put_line('Not a palindrome');
+	end if;
+end;
+/	

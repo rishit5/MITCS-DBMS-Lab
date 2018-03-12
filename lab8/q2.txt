@@ -1,0 +1,30 @@
+set serveroutput on
+create or replace procedure studept(a student.dept_name%type)is 
+	cursor c1(a student.dept_name%type) is
+		select * 
+		from student
+		where dept_name = a;
+	cursor c2(a student.dept_name%type) is 
+		select * 
+		from course
+		where dept_name = a;
+begin
+	for item in c1(a) 
+	loop
+		dbms_output.put_line(item.id || item.name || item.dept_name || item.tot_cred);
+	end loop;
+	for item in c2(a)
+	loop
+		dbms_output.put_line(item.course_id || item.title|| item.dept_name || item.credits);
+	end loop;
+end;
+/
+
+
+set serveroutput on
+declare
+	deptname student.dept_name%type := 'Physics';
+begin
+	studept(deptname);
+end;
+/

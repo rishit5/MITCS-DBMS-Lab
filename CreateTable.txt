@@ -1,0 +1,75 @@
+Creating table:
+1. Create table Student (
+	ID number(5) primary key,
+	name varchar(20),
+	deptname varchar(20),
+	totcred number(5)
+);
+2. Create table Instructor (
+	ID number(5) primary key,
+	name varchar(20),
+	deptname varchar(20),
+	salary number(5)
+);
+3.Create table Course (
+	Course_ID number(5) primary key,
+	title varchar(20),
+	deptname varchar(20),
+	credits number(5)
+);
+4. Create table Takes (
+	ID number(5),
+	Course_ID number(5),
+	Sec_ID number(5),
+	Semester number(1),
+	Year number(4), 
+	Grade number(2,1),
+	primary key(ID, Course_ID, Sec_ID, Semester, Year) 
+);
+5. Create table Classroom (
+	Building varchar(20),
+	room_number number(3),
+	capacity number(4),
+	primary key (Building , room_number)
+);
+6. Create table Department (
+	deptname varchar(20),
+	Building varchar(20),
+	budget number(5),
+	primary key(deptname)
+);
+7. Create table Section (
+	Course_ID number(5),
+	Sec_ID number(5),
+	Semester number(1),
+	Year number(4), 
+	Building varchar(20),
+	room_number number(3),
+	time_slot_id varchar(20),
+	primary key(Course_ID, Sec_ID, Semester, Year)
+);
+8. Create table Teaches (
+	ID number(5),
+	Course_ID number(5),
+	Sec_ID number(5),
+	Semester number(1),
+	Year number(4), 
+	primary key(ID, Course_ID, Sec_ID, Semester, Year)
+);
+9. Create table Advisor(
+	S_ID number(5),
+	I_ID number(5),
+	primary key(S_ID, I_ID)
+);
+10. Create table Time_Slot(
+	time_slot_id varchar(20),
+	Day varchar(10),
+	Start_time time,
+	End_time time,
+	primary key(time_slot_id, Day, Start_time)
+);
+11. Create table Prereq(
+	Course_ID number(5),
+	prereq_id number(5),
+	primary key(Course_ID, prereq_id)
+);

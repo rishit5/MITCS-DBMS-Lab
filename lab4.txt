@@ -1,0 +1,20 @@
+1. Create table Employee (
+	Empno number(5),
+	Empname varchar(10) NOT NULL,
+	Sex varchar(1) NOT NULL,
+	Salary number(6)  DEFAULT(1000),
+	Address varchar(20) NOT NULL,
+	primary key(Empno),
+	CHECK (Sex in ('M', 'F')));
+2. Create table Department1 (
+	DeptNo number(5),
+	DeptName varchar(10) UNIQUE,
+	primary key(DeptNo));
+3. Alter table Employee add foreign key (DeptNo)
+	references Department1(DeptNo);
+4. Alter table Employee add ( DeptNo number(5));
+5. Insert into Employee values (28732, 'Rishit', 'M', 100001, 'Bangalore', NULL);
+Insert into Employee values (28731, 'Ratuu', 'F', 100001, 'Mangalore', NULL);
+Insert into Employee values (28733, 'Ratts', 'M', 10001, 'Tangalore', NULL);
+Insert into Employee values (28734, 'Roooa', 'M', 2001, 'Pangalore', NULL);
+Insert into Employee values (28735, 'Ramen', 'F', 200001, 'Wangalore', NULL);

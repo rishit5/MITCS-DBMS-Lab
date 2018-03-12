@@ -1,0 +1,27 @@
+set serveroutput on
+declare
+	iid1 varchar2(5);
+	dept varchar2(20) := 'Finance';
+	dept_mul exception;
+	cou number(2);
+begin
+	-- select id into iid1 from instructor i, department d where d.dept_name = dept and d.dept_name = i.dept_name;
+	with ins_count(ins_id, counter) as 
+		(select i.id, count(*) 
+		from instructor i, department d 
+		where i.dept_name = d.dept_name 
+		group by i.id)
+	select counter
+	into cou
+	from ins_count
+	where counter  = 1;
+	if cou = 1 then
+		raise dept_mul;
+	end if;
+exception
+	when no_data_found then
+		dbms_output.put_line('No instructors in dept');
+	when dept_mul then
+		dbms_output.put_line('Some instructor have more than one');
+end;
+/

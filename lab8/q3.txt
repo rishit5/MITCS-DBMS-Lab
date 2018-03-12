@@ -1,0 +1,20 @@
+set serveroutput on
+create or replace procedure department_highest(a instructor.dept_name%type) is
+	sal instructor.salary%type;
+	nam instructor.name%type;
+begin
+	select max(salary) into sal from instructor group by dept_name having dept_name = a;
+	select name into nam from instructor where salary = sal and dept_name = a;
+	dbms_output.put_line('Highest paid instructor of '|| a || ' is ' ||nam);
+end;
+/
+declare
+begin
+	department_highest('Physics');
+	department_highest('Comp. Sci.');
+	department_highest('Finance');
+	department_highest('Music');
+	department_highest('History');
+	department_highest('Biology');
+end;
+/

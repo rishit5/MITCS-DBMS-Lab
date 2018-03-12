@@ -1,0 +1,7 @@
+create table item_master(Item_id varchar2(5), Description varchar2(20), Bal_stock number(5));
+create table item_transaction(Item_id varchar2(5), Description varchar2(20), Quantity number(5));
+insert into item_transaction values('12345', 'WoodenChair', 30);
+insert into item_transaction values('12346', 'PlasticBall', 50);
+insert into item_transaction values('12347', 'MetalHead', 70);
+insert into item_transaction values('12348', 'StyroFoamHead', 10);
+insert into item_master('12345', 'WoodenChair', 100);

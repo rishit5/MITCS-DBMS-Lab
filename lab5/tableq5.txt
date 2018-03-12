@@ -1,0 +1,1 @@
+create table tbl_next_date ( given_date date, next_date date);

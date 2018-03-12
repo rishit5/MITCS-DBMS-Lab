@@ -1,0 +1,17 @@
+declare
+	temp instructor%rowtype;
+	dname varchar2(20) := 'Physics';
+	cursor c1 is
+		select * from instructor where dept_name = dname;
+begin 
+	open c1;
+		loop
+			fetch c1 into temp;
+			exit when c1%notfound;
+			update instructor set salary = 1.05*salary
+				where id = temp.id;
+			insert into salary_raise values(temp.id, sysdate, temp.salary*1.05);
+		end loop;
+	close c1;
+end;
+/

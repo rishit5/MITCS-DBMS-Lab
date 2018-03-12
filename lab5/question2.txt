@@ -1,0 +1,22 @@
+set serveroutput on
+declare
+	dor date ;
+	doi date;
+	diff number;
+	fine float := 0;
+begin
+	dor := &dor;
+	doi := &doi;
+	diff := dor-doi;
+	if diff <= 5 then
+		fine := 0.50;
+	elsif (diff >=6) and (diff <=10) then 
+		fine := 1.00;
+	elsif (diff > 10) and (diff <=30) then
+		fine := 5.00;
+	else 
+		fine := 10.00;
+	end if;
+	dbms_output.put_line('Fine is :' || to_char(fine));
+end;
+/ 

@@ -1,0 +1,22 @@
+set serveroutput on 
+declare
+	total_salary number(10,2);
+	cursor c1 is 
+		select * from instructor where name = 'Srinivasan' or name = 'Mozart'; 		
+begin
+	savepoint s;
+	for item in c1
+	loop 
+		update instructor set salary = 100000
+			where name = 'Srinivasan';
+		update instructor set salary = 150000
+			where name = 'Mozart';
+	end loop;
+	select sum(salary) into total_salary from instructor;
+	if(total_salary > 2000000) then
+		rollback to s;
+	else
+		commit;
+	end if;
+end;
+/

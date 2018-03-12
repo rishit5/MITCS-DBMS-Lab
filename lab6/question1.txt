@@ -1,0 +1,19 @@
+set serveroutput on
+declare
+	radius1 numeric(4,2);
+	area1 numeric(4,2);
+	exp1 exception;
+begin
+	dbms_output.put_line('Enter radius');
+	radius1 := &radius1;
+	if radius1 <0 then 
+		raise exp1;
+	end if;
+	select area into area1 from areas where radius = radius1;
+exception
+	when no_data_found then
+		dbms_output.put_line('No data was found');
+	when exp1 then 
+		dbms_output.put_line('less than 0');
+end;
+/

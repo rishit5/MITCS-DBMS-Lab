@@ -1,0 +1,1 @@
+create table Areas (radius numeric(4,2), area numeric(6,2));

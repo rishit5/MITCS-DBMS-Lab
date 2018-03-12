@@ -1,0 +1,58 @@
+1. create table employee1(
+	ssn number(5),
+	Bdate date not null,
+	Fname varchar(10),
+	Mname varchar(10),
+	Lname varchar(10),
+	Address varchar(20),
+	Salary number(5),
+	Sex varchar(1) check(Sex = 'M' or Sex = 'F'),
+	Dnumber number(5),
+	sssn number(5),
+	primary key(ssn)
+);
+2. create table department2(
+	Dnumber number(5),
+	Dname varchar(5),
+	Manssn number(5),
+	ManDate date,
+	primary key(Dnumber)
+);
+3. Create table locations(
+	Dnumber number(5),
+	Location varchar(10),
+	primary key (Dnumber, Location)
+);
+4. Create table project(
+	Pnumber number(5),
+	Pname varchar(10),
+	Locations varchar(10),
+	Dnumber number(5),
+	primary key(Pnumber, Pname)
+);
+5. Create table works_on(
+	Essn number(5),
+	Pnumber number(5),
+	Hours number(4),
+	primary key(Essn, Pnumber)
+);
+6. create table dependent(
+	Essn number(5),
+	Name varchar(10),
+	Sex varchar(1) check(Sex = 'M' or Sex = 'F'),
+	Bdate date,
+	Relationship varchar(10),
+	primary key(Essn , Name)
+);                                       
+7. alter table employee1 add foreign key(Dnumber) references department2(Dnumber);
+8. alter table employee1 add foreign key(sssn) references employee1(ssn); 
+9. alter table department2 add foreign key(Manssn) references employee1(ssn);
+10. alter table locations add foreign key(Dnumber) references department2(Dnumber); 
+11. alter table works_on add foreign key(Essn) references employee1(ssn);
+12. alter table dependent add foreign key(Essn) references employee1(ssn); 
+13.alter table project add foreign key(Dnumber) references department2(Dnumber); 
+14. alter table works_on add foreign key(Pnumber) references project(Pnumber);
+ 5. 
+select E.fname, E.lname, E1.fname, E1.lname
+from employee1 E, employee1 E1
+where  E.sssn = E1.ssn;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     

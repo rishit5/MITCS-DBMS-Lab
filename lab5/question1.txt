@@ -1,0 +1,26 @@
+declare
+	a number;
+	b number := 0;
+	c number := 0;
+	d number := 0;
+	e float := 0;
+	f float := 0;
+	r1 float := 0;
+	r2 float := 0;
+begin
+	a := &a;
+	b := &b;
+	c := &c;
+	d := b*b - 4*a*c; 
+	if d<0 then
+		e := (-b)/(2*a);
+		f := sqrt(-d)/(2*a);
+		dbms_output.put_line('Roots are ' || to_char(e) || '+' || to_char(f) || 'i');
+		dbms_output.put_line('Roots are ' || to_char(e) || '-' || to_char(f) || 'i');
+	else
+		r1 := ((-b) + d)/2*a;
+		r2 := ((-b) - d)/2*a;
+		dbms_output.put_line('Roots are ' || to_char(r1) || 'and' || to_char(r2));
+	end if;
+end;
+/

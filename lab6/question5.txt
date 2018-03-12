@@ -1,0 +1,16 @@
+declare
+	temp student%rowtype;
+	x number := 0;
+	cursor c1 is
+		select * from student order by tot_cred asc;
+begin
+	open c1;
+		loop
+			fetch c1 into temp;
+			dbms_output.put_line(temp.id || '    ' || temp.name || '   ' ||temp.dept_name || '    ' ||temp.tot_cred);
+			exit when x = 9;
+			x := x + 1;
+		end loop;
+	close c1;
+end;
+/

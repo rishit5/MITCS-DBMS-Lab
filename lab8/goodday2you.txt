@@ -1,0 +1,10 @@
+create or replace procedure p is
+begin
+	dbms_output.put_line('good day to you');
+end;
+/
+declare
+begin 
+	p;
+end;
+/
