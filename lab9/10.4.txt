@@ -1,0 +1,11 @@
+create view advisor_student as
+select s_id, s.name as s_name, s.dept_name as s_dept_name, s.tot_cred, i_id, i.name as i_name,
+	i.dept_name as i_deptname , i.salary
+from ((student s join advisor a on s.id = a.s_id) join instructor i on i_id = i.id);
+create or replace trigger adv_trigger
+instead of delete on advisor_student
+for each row
+begin
+	delete from student 
+end;
+/

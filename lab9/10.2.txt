@@ -1,0 +1,15 @@
+create or replace trigger item_trigger
+before insert
+on item_transaction
+for each row
+begin
+	case 
+	when inserting then
+		update item_master 
+		set bal_stock = bal_stock - :NEW.quantity
+		where item_master.item_id = :NEW.item_id;
+	end case;
+end;
+/
+insert into item_master values(12345, 'Nice', 100);
+insert into item_transaction values(12345, 'Nice', 70);

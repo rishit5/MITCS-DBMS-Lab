@@ -1,0 +1,35 @@
+create table log_changes_takes (
+	time_of_change timestamp primary key,
+	id varchar2(5) not null ,
+	course_id varchar2(8),
+	sec_id varchar2(8) not null,
+	semester varchar2(6) not null,
+	year number(4) not null,
+	grade varchar2(5)
+);
+create or replace trigger takes_trigger
+before insert or update of id, course_id, semester, year, grade
+or delete on takes
+for each row
+begin
+	case
+	when inserting then
+		insert into log_changes_takes values(current_timestamp, :NEW.id,  
+		:NEW.course_id,:NEW.sec_id,:NEW.semester,:NEW.year,:NEW.grade);
+	when updating then
+		insert into log_changes_takes values(current_timestamp, :NEW.id,  
+		:NEW.course_id,:NEW.sec_id,:NEW.semester,:NEW.year,:NEW.grade);
+	when deleting then
+		insert into log_changes_takes values(current_timestamp, :OLD.id,  
+		:OLD.course_id,:OLD.sec_id,:OLD.semester,:OLD.year,:OLD.grade);
+	end case;
+end;
+/
+update takes
+set year = 2001 
+where year = 2009;
+/
+delete from takes
+where year = 2009;
+/
+insert into takes values(45678, 'BIO-301', 1, 'Summer', 2010, 'B+');
